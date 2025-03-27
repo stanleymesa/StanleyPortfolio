@@ -1,5 +1,5 @@
+import 'package:animated_visibility/animated_visibility.dart';
 import 'package:core/ui/component/default_button_custom.dart';
-import 'package:core/utils/ext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
@@ -12,11 +12,12 @@ class MainHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => AnimatedOpacity(
-        opacity: (controller.isShowHeader.value)
-            ? 1
-            : 0,
-        duration: Duration(milliseconds: 250),
+      () => AnimatedVisibility(
+        visible: controller.isShowHeader.value,
+        enter: fadeIn() + expandVertically(),
+        exit: fadeOut() + shrinkVertically(),
+        enterDuration: Duration(milliseconds: 250),
+        exitDuration: Duration(milliseconds: 250),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.sizeOf(context).width * 0.15,
@@ -39,7 +40,7 @@ class MainHeader extends StatelessWidget {
                       child: Text(
                         'S',
                         style: Get.textTheme.labelLarge?.copyWith(
-                            fontSize: 18, color: Get.theme.colorScheme.primary),
+                            fontSize: 18, color: Get.theme.colorScheme.tertiary),
                       ),
                     ),
                     SizedBox(

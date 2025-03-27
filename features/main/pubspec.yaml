@@ -15,6 +15,7 @@ dependencies:
 
   get: ^4.6.6
   scrollable_positioned_list: ^0.3.8
+  animated_visibility: ^0.0.4
 
 dev_dependencies:
   lints: ^2.1.0
