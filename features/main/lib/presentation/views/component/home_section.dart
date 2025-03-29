@@ -16,11 +16,8 @@ class HomeSection extends StatelessWidget {
         children: [
           /** Main Content */
           Padding(
-            padding: EdgeInsets.fromLTRB(
-              MediaQuery.sizeOf(context).width * 0.1,
-              0,
-              MediaQuery.sizeOf(context).width * 0.1,
-              0,
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.sizeOf(context).width * 0.1,
             ),
             child: Row(
               children: [
@@ -35,7 +32,7 @@ class HomeSection extends StatelessWidget {
             child: Container(
               width: MediaQuery.sizeOf(context).width,
               height: 56,
-              color: Get.theme.colorScheme.tertiary,
+              color: Get.theme.colorScheme.onPrimaryContainer,
               transform: Matrix4.rotationZ(-0.02),
             ),
           ),
@@ -44,26 +41,32 @@ class HomeSection extends StatelessWidget {
             child: Container(
               width: MediaQuery.sizeOf(context).width,
               height: 56,
-              color: Get.theme.colorScheme.primary,
+              color: Get.theme.colorScheme.primaryContainer,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     'Android Native',
-                    style: Get.textTheme.titleLarge?.copyWith(
-                        color: Get.theme.colorScheme.onPrimary, fontSize: 18),
+                    style: Get.textTheme.labelLarge?.copyWith(
+                        color: Get.theme.colorScheme.onPrimaryContainer),
                   ),
-                  Icon(Icons.stars_outlined, color: Get.theme.colorScheme.onPrimary,),
+                  Icon(
+                    Icons.stars_outlined,
+                    color: Get.theme.colorScheme.onPrimaryContainer,
+                  ),
                   Text(
                     'Flutter Mobile',
-                    style: Get.textTheme.titleLarge?.copyWith(
-                        color: Get.theme.colorScheme.onPrimary, fontSize: 18),
+                    style: Get.textTheme.labelLarge?.copyWith(
+                        color: Get.theme.colorScheme.onPrimaryContainer),
                   ),
-                  Icon(Icons.stars_outlined, color: Get.theme.colorScheme.onPrimary,),
+                  Icon(
+                    Icons.stars_outlined,
+                    color: Get.theme.colorScheme.onPrimaryContainer,
+                  ),
                   Text(
                     'Flutter Web',
-                    style: Get.textTheme.titleLarge?.copyWith(
-                        color: Get.theme.colorScheme.onPrimary, fontSize: 18),
+                    style: Get.textTheme.labelLarge?.copyWith(
+                        color: Get.theme.colorScheme.onPrimaryContainer),
                   ),
                 ],
               ),
@@ -89,7 +92,9 @@ class HomeNameSection extends StatelessWidget {
           Text(
             'Hello There!',
             style: Get.textTheme.bodyLarge?.copyWith(
-                fontSize: 22, color: Get.theme.colorScheme.secondary),
+              fontSize: 18,
+              color: Get.theme.colorScheme.secondary,
+            ),
           ),
           SizedBox(
             height: 16,
@@ -120,8 +125,10 @@ class HomeNameSection extends StatelessWidget {
           ),
           Text(
             "I'm an experienced Mobile Developer with 2+ years in the field, focusing on Android and Flutter Development.",
-            style: Get.textTheme.bodyLarge?.copyWith(
-                fontSize: 16, color: Get.theme.colorScheme.secondary),
+            style: Get.textTheme.bodyMedium?.copyWith(
+              fontSize: 14,
+              color: Get.theme.colorScheme.secondary,
+            ),
           ),
           SizedBox(
             height: 32,
@@ -140,21 +147,22 @@ class HomeNameSection extends StatelessWidget {
                         Image.asset(
                           '../../assets/images/img_github.webp',
                           width: 24,
+                          color: Get.theme.colorScheme.primary,
                         ),
                         SizedBox(
                           width: 12,
                         ),
                         Text(
                           'GitHub',
-                          style: Get.textTheme.labelLarge?.copyWith(
-                              color: Get.theme.colorScheme.onPrimary),
+                          style: Get.textTheme.labelLarge
+                              ?.copyWith(color: Get.theme.colorScheme.primary),
                         ),
                       ],
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Get.theme.colorScheme.primary,
-                    foregroundColor: Get.theme.colorScheme.onPrimary,
+                    backgroundColor: Get.theme.colorScheme.background,
+                    side: BorderSide(color: Get.theme.colorScheme.primary),
                   ),
                 ),
               ),
@@ -176,7 +184,7 @@ class HomeNameSection extends StatelessWidget {
                           child: Text(
                             'in',
                             style: Get.textTheme.titleLarge?.copyWith(
-                              color: Get.theme.colorScheme.background,
+                              color: Get.theme.colorScheme.onPrimary,
                             ),
                           ),
                         ),
@@ -192,7 +200,7 @@ class HomeNameSection extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: Get.theme.colorScheme.background,
                     side: BorderSide(color: Get.theme.colorScheme.primary),
                   ),
                 ),

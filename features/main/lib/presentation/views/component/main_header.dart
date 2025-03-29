@@ -1,7 +1,10 @@
 import 'package:animated_visibility/animated_visibility.dart';
+import 'package:core/database/hive_db.dart';
+import 'package:core/shared_data/enum/app_mode.dart';
 import 'package:core/ui/component/default_button_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
 
 class MainHeader extends StatelessWidget {
@@ -28,6 +31,7 @@ class MainHeader extends StatelessWidget {
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(36)),
+              border: Border.all(color: Get.theme.colorScheme.background),
               color: Theme.of(context).colorScheme.primary,
             ),
             child: Row(
@@ -37,10 +41,10 @@ class MainHeader extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundColor: Get.theme.colorScheme.tertiaryContainer,
-                      child: Text(
-                        'S',
-                        style: Get.textTheme.labelLarge?.copyWith(
-                            fontSize: 18, color: Get.theme.colorScheme.tertiary),
+                      child: Image.asset(
+                        '../../assets/images/img_stanley_logo.webp',
+                        width: 24,
+                        color: Get.theme.colorScheme.onTertiaryContainer,
                       ),
                     ),
                     SizedBox(
@@ -63,15 +67,17 @@ class MainHeader extends StatelessWidget {
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                         child: Text(
                           'Home',
-                          style: TextStyle(
-                            color: Get.theme.colorScheme.onPrimary,
+                          style: Get.textTheme.titleMedium?.copyWith(
+                            color: Get.theme.colorScheme.onTertiary,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Get.theme.colorScheme.onTertiary,
                           ),
                         ),
                       ),
                       onClick: () {},
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 16,
                     ),
                     DefaultButtonCustom(
                       appMode: controller.appPersistence.getAppMode(),
@@ -81,15 +87,14 @@ class MainHeader extends StatelessWidget {
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                         child: Text(
                           'About',
-                          style: TextStyle(
-                            color: Get.theme.colorScheme.onPrimary,
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(
+                              color: Get.theme.colorScheme.onPrimary),
                         ),
                       ),
                       onClick: () {},
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 16,
                     ),
                     DefaultButtonCustom(
                       appMode: controller.appPersistence.getAppMode(),
@@ -99,15 +104,14 @@ class MainHeader extends StatelessWidget {
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                         child: Text(
                           'Projects',
-                          style: TextStyle(
-                            color: Get.theme.colorScheme.onPrimary,
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(
+                              color: Get.theme.colorScheme.onPrimary),
                         ),
                       ),
                       onClick: () {},
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 16,
                     ),
                     DefaultButtonCustom(
                       appMode: controller.appPersistence.getAppMode(),
@@ -117,9 +121,8 @@ class MainHeader extends StatelessWidget {
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                         child: Text(
                           'Journey',
-                          style: TextStyle(
-                            color: Get.theme.colorScheme.onPrimary,
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(
+                              color: Get.theme.colorScheme.onPrimary),
                         ),
                       ),
                       onClick: () {},
@@ -129,14 +132,40 @@ class MainHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                Switch(
-                  value: true,
-                  trackColor: MaterialStateProperty.all(
-                      Get.theme.colorScheme.tertiaryContainer),
-                  thumbColor:
-                      MaterialStateProperty.all(Get.theme.colorScheme.tertiary),
-                  onChanged: (value) {},
-                )
+                ValueListenableBuilder(
+                  valueListenable:
+                      Hive.box<String>(HiveDB.appModeBox).listenable(),
+                  builder: (context, box, child) {
+                    var currentAppMode = controller.appPersistence.getAppMode();
+                    return Switch(
+                      value: currentAppMode == AppMode.DARK,
+                      trackColor: MaterialStateProperty.all(
+                        Get.theme.colorScheme.tertiaryContainer,
+                      ),
+                      thumbColor: MaterialStateProperty.all(
+                        Get.theme.colorScheme.onTertiaryContainer,
+                      ),
+                      onChanged: (value) {
+                        controller.appPersistence.setAppMode(
+                            (value) ? AppMode.DARK.name : AppMode.LIGHT.name);
+                      },
+                      thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return Icon(
+                              Icons.dark_mode_outlined,
+                              color: Get.theme.colorScheme.tertiaryContainer,
+                            );
+                          }
+                          return Icon(
+                            Icons.light_mode_outlined,
+                            color: Get.theme.colorScheme.tertiaryContainer,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
