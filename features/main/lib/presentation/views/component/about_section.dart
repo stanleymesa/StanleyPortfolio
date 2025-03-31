@@ -1,3 +1,4 @@
+import 'package:core/ui/component/default_border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -227,7 +228,7 @@ class AboutMeSection extends StatelessWidget {
                       foregroundColor:
                           Get.theme.colorScheme.onTertiaryContainer,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 4, vertical: 12)),
+                          EdgeInsets.symmetric(horizontal: 6, vertical: 12)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -286,16 +287,8 @@ class ServiceContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Get.theme.colorScheme.secondaryContainer,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          border: Border.all(
-            color: Get.theme.colorScheme.onSecondaryContainer.withOpacity(0.2),
-          ),
-        ),
-        child: Column(
+      child: DefaultBorderCard(
+        content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(

@@ -39,7 +39,9 @@ class MainWeb extends StatelessWidget {
         controller: controller,
       ),
       AboutSection(),
-      ProjectSection(),
+      ProjectSection(
+        controller: controller,
+      ),
       JourneySection(),
     ];
 
@@ -71,5 +73,3 @@ class MainMobile extends StatelessWidget {
     );
   }
 }
-
-
