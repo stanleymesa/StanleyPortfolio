@@ -11,7 +11,7 @@ class MainController extends GetxController {
   final AppPersistence appPersistence = locator.get<AppPersistence>();
   final ItemScrollController scrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
-  ItemPositionsListener.create();
+      ItemPositionsListener.create();
   Timer? timer;
 
   final navItems = [
@@ -19,7 +19,7 @@ class MainController extends GetxController {
     NavItem(navType: NavType.ABOUT, title: 'About', isSelected: false),
     NavItem(navType: NavType.PROJECTS, title: 'Projects', isSelected: false),
     NavItem(navType: NavType.JOURNEY, title: 'Journey', isSelected: false),
-  ];
+  ].obs;
 
   final _previousScrollOffset = 0.0.obs;
   final _isHeaderInit = false.obs;
@@ -32,10 +32,14 @@ class MainController extends GetxController {
     timer = Timer(Duration(milliseconds: delay), action);
   }
 
-  void scrollTo(int index) {
+  void scrollTo(NavType navType) {
+    final index = navItems.indexWhere((e) => e.navType == navType);
     scrollController.scrollTo(
-        index: index, duration: Duration(milliseconds: 500));
+        index: index != -1 ? index : 0, duration: Duration(milliseconds: 500));
+
     _isScrolling.value = true;
+    navItems.value =
+        navItems.map((e) => e.copy(isSelected: e.navType == navType)).toList();
     debounceDelay(() => _isScrolling.value = false, delay: 1000);
   }
 
@@ -48,7 +52,7 @@ class MainController extends GetxController {
         final firstVisibleIndex = currentPositions.first.index;
         final lastVisibleIndex = currentPositions.last.index;
         final currentOffset = itemPositionsListener
-            .itemPositions.value.isNotEmpty
+                .itemPositions.value.isNotEmpty
             ? itemPositionsListener.itemPositions.value.first.itemLeadingEdge
             : 0.0;
 

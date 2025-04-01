@@ -124,7 +124,7 @@ class HomeNameSection extends StatelessWidget {
             height: 24,
           ),
           Text(
-            "I'm an experienced Mobile Developer with 2+ years in the field, focusing on Android and Flutter Development.",
+            "Experienced Mobile Developer with 2+ years in the field, focusing on Android and Flutter Development.",
             style: Get.textTheme.bodyMedium?.copyWith(
               fontSize: 14,
               color: Get.theme.colorScheme.secondary,

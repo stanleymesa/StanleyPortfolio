@@ -57,80 +57,43 @@ class MainHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    DefaultButtonCustom(
-                      appMode: controller.appPersistence.getAppMode(),
-                      radiusSplash: 8,
-                      content: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        child: Text(
-                          'Home',
-                          style: Get.textTheme.titleMedium?.copyWith(
-                            color: Get.theme.colorScheme.onTertiary,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Get.theme.colorScheme.onTertiary,
+                Obx(
+                  () => Row(
+                    children: List.generate(
+                      controller.navItems.length,
+                      (index) {
+                        final navItem = controller.navItems[index];
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            right:
+                                index < controller.navItems.length - 1 ? 16 : 0,
                           ),
-                        ),
-                      ),
-                      onClick: () => controller.scrollTo(0),
+                          child: DefaultButtonCustom(
+                            appMode: controller.appPersistence.getAppMode(),
+                            radiusSplash: 8,
+                            content: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 12),
+                              child: Text(
+                                navItem.title,
+                                style: navItem.isSelected
+                                    ? Get.textTheme.titleMedium?.copyWith(
+                                        color: Get.theme.colorScheme.onTertiary,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor:
+                                            Get.theme.colorScheme.onTertiary,
+                                      )
+                                    : Get.textTheme.bodyMedium?.copyWith(
+                                        color: Get.theme.colorScheme.onPrimary,
+                                      ),
+                              ),
+                            ),
+                            onClick: () => controller.scrollTo(navItem.navType),
+                          ),
+                        );
+                      },
                     ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    DefaultButtonCustom(
-                      appMode: controller.appPersistence.getAppMode(),
-                      radiusSplash: 8,
-                      content: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        child: Text(
-                          'About',
-                          style: Get.textTheme.bodyMedium?.copyWith(
-                              color: Get.theme.colorScheme.onPrimary),
-                        ),
-                      ),
-                      onClick: () => controller.scrollTo(1),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    DefaultButtonCustom(
-                      appMode: controller.appPersistence.getAppMode(),
-                      radiusSplash: 8,
-                      content: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        child: Text(
-                          'Projects',
-                          style: Get.textTheme.bodyMedium?.copyWith(
-                              color: Get.theme.colorScheme.onPrimary),
-                        ),
-                      ),
-                      onClick: () => controller.scrollTo(2),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    DefaultButtonCustom(
-                      appMode: controller.appPersistence.getAppMode(),
-                      radiusSplash: 8,
-                      content: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        child: Text(
-                          'Journey',
-                          style: Get.textTheme.bodyMedium?.copyWith(
-                              color: Get.theme.colorScheme.onPrimary),
-                        ),
-                      ),
-                      onClick: () => controller.scrollTo(3),
-                    ),
-                    SizedBox(
-                      width: 0,
-                    ),
-                  ],
+                  ),
                 ),
                 ValueListenableBuilder(
                   valueListenable:
