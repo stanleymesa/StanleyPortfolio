@@ -74,7 +74,7 @@ class MainHeader extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onClick: () {},
+                      onClick: () => controller.scrollTo(0),
                     ),
                     SizedBox(
                       width: 16,
@@ -91,7 +91,7 @@ class MainHeader extends StatelessWidget {
                               color: Get.theme.colorScheme.onPrimary),
                         ),
                       ),
-                      onClick: () {},
+                      onClick: () => controller.scrollTo(1),
                     ),
                     SizedBox(
                       width: 16,
@@ -108,7 +108,7 @@ class MainHeader extends StatelessWidget {
                               color: Get.theme.colorScheme.onPrimary),
                         ),
                       ),
-                      onClick: () {},
+                      onClick: () => controller.scrollTo(2),
                     ),
                     SizedBox(
                       width: 16,
@@ -125,7 +125,7 @@ class MainHeader extends StatelessWidget {
                               color: Get.theme.colorScheme.onPrimary),
                         ),
                       ),
-                      onClick: () {},
+                      onClick: () => controller.scrollTo(3),
                     ),
                     SizedBox(
                       width: 0,

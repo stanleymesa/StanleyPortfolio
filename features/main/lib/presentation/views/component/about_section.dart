@@ -13,12 +13,15 @@ class AboutSection extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
+            flex: 3,
             child: Container(
               color: Get.theme.colorScheme.background,
+              padding: EdgeInsets.only(top: 72),
               child: AboutServiceSection(),
             ),
           ),
           Expanded(
+            flex: 2,
             child: Container(
               color: Get.theme.colorScheme.primary,
               child: AboutMeSection(),
@@ -144,13 +147,13 @@ class AboutMeSection extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width * 0.4,
-                  height: MediaQuery.sizeOf(context).height * 0.4,
+                  width: MediaQuery.sizeOf(context).width * 0.325,
+                  height: MediaQuery.sizeOf(context).height * 0.325,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Get.theme.colorScheme.tertiaryContainer,
                   ),
-                  transform: Matrix4.translationValues(24, 0, 0),
+                  transform: Matrix4.translationValues(16, 0, 0),
                 ),
                 Image.asset(
                   '../../assets/images/img_stanley.webp',
@@ -228,7 +231,7 @@ class AboutMeSection extends StatelessWidget {
                       foregroundColor:
                           Get.theme.colorScheme.onTertiaryContainer,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 6, vertical: 12)),
+                          EdgeInsets.symmetric(horizontal: 3, vertical: 11)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -253,7 +256,7 @@ class AboutMeSection extends StatelessWidget {
                         width: 8,
                       ),
                       CircleAvatar(
-                        radius: 18,
+                        radius: 17,
                         backgroundColor: Get.theme.colorScheme.tertiary,
                         child: Icon(
                           Icons.arrow_forward_rounded,
@@ -317,6 +320,8 @@ class ServiceContent extends StatelessWidget {
               style: Get.textTheme.bodyMedium?.copyWith(
                 color: Get.theme.colorScheme.secondary,
               ),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
