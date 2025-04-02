@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:core/database/app_persistence.dart';
 import 'package:core/di/locator.dart';
 import 'package:core/utils/ext.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main/model/nav_item.dart';
+import 'package:main/presentation/model/nav_item.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MainController extends GetxController {
@@ -14,37 +13,9 @@ class MainController extends GetxController {
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
   Timer? timer;
+  Timer? timerNav;
 
-  final navItems = [
-    NavItem(
-      navType: NavType.HOME,
-      title: 'Home',
-      icon: Icons.home_outlined,
-      selectedIcon: Icons.home_rounded,
-      isSelected: true,
-    ),
-    NavItem(
-      navType: NavType.ABOUT,
-      title: 'About',
-      icon: Icons.person_outline_rounded,
-      selectedIcon: Icons.person_rounded,
-      isSelected: false,
-    ),
-    NavItem(
-      navType: NavType.PROJECTS,
-      title: 'Projects',
-      icon: Icons.code_rounded,
-      selectedIcon: Icons.developer_mode_rounded,
-      isSelected: false,
-    ),
-    NavItem(
-      navType: NavType.JOURNEY,
-      title: 'Journey',
-      icon: Icons.school_outlined,
-      selectedIcon: Icons.school_rounded,
-      isSelected: false,
-    ),
-  ].obs;
+  final navItems = defaultNavItems.obs;
 
   final _previousScrollOffset = 0.0.obs;
   final _isHeaderInit = false.obs;
@@ -56,6 +27,11 @@ class MainController extends GetxController {
   void debounceDelay(Function() action, {int delay = 100}) {
     timer?.cancel();
     timer = Timer(Duration(milliseconds: delay), action);
+  }
+
+  void debounceNav(Function() action, {int delay = 100}) {
+    timerNav?.cancel();
+    timerNav = Timer(Duration(milliseconds: delay), action);
   }
 
   void scrollTo(NavType navType) {
@@ -75,6 +51,14 @@ class MainController extends GetxController {
   void onInit() {
     itemPositionsListener.itemPositions.addListener(() {
       final currentPositions = itemPositionsListener.itemPositions.value;
+
+      /** Auto selected when scroll */
+      debounceNav(() {
+        navItems.value = navItems
+            .map((e) =>
+                e.copy(isSelected: e.index == currentPositions.first.index))
+            .toList();
+      });
 
       if (currentPositions.isNotEmpty && _isScrolling.value.isFalse()) {
         final firstVisibleIndex = currentPositions.first.index;

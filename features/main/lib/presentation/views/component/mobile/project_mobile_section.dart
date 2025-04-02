@@ -1,27 +1,24 @@
 import 'package:core/ui/component/default_border_card.dart';
 import 'package:core/ui/component/default_button_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
 
-class ProjectSection extends StatelessWidget {
+class ProjectMobileSection extends StatelessWidget {
   final MainController controller;
 
-  const ProjectSection({super.key, required this.controller});
+  const ProjectMobileSection({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.sizeOf(context).width * 0.1,
+        horizontal: 24,
+        vertical: 32,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 144,
-          ),
           /** Project Title */
           Row(
             children: [
@@ -37,9 +34,8 @@ class ProjectSection extends StatelessWidget {
               ),
               Text(
                 'My Portfolio',
-                style: Get.textTheme.bodyLarge?.copyWith(
+                style: Get.textTheme.bodyMedium?.copyWith(
                   color: Get.theme.colorScheme.onBackground,
-                  fontSize: 18,
                 ),
               ),
             ],
@@ -52,7 +48,7 @@ class ProjectSection extends StatelessWidget {
               text: 'My Latest',
               style: Get.textTheme.bodyLarge?.copyWith(
                 color: Get.theme.colorScheme.tertiary,
-                fontSize: 36,
+                fontSize: 24,
                 fontStyle: FontStyle.italic,
               ),
               children: [
@@ -60,7 +56,7 @@ class ProjectSection extends StatelessWidget {
                   text: ' Projects',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 36,
+                    fontSize: 24,
                     fontStyle: FontStyle.normal,
                   ),
                 )
@@ -69,15 +65,14 @@ class ProjectSection extends StatelessWidget {
           ),
           /** Projects */
           SizedBox(
-            height: 32,
+            height: 24,
           ),
-          MasonryGridView.builder(
-            itemCount: 5,
-            mainAxisSpacing: 24,
-            crossAxisSpacing: 24,
+          ListView.separated(
             shrinkWrap: true,
-            gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 5,
+            separatorBuilder: (context, index) => SizedBox(
+              height: 16,
             ),
             itemBuilder: (context, index) => DefaultButtonCustom(
               appMode: controller.appPersistence.getAppMode(),
@@ -131,15 +126,18 @@ class ProjectSection extends StatelessWidget {
                       height: 24,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Cinebox - Personal Movies App',
-                          style: Get.textTheme.labelMedium?.copyWith(
-                            color: Get.theme.colorScheme.onBackground,
-                            fontSize: 20,
+                        Expanded(
+                          child: Text(
+                            'Cinebox - Personal Movies App',
+                            style: Get.textTheme.labelLarge?.copyWith(
+                              color: Get.theme.colorScheme.onBackground,
+                            ),
                           ),
+                        ),
+                        SizedBox(
+                          width: 12,
                         ),
                         CircleAvatar(
                           backgroundColor: Get.theme.colorScheme.primary,
@@ -154,7 +152,7 @@ class ProjectSection extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

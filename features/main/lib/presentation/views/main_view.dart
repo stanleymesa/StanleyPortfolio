@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/views/component/main_header.dart';
 import 'package:main/presentation/views/component/main_mobile_header.dart';
+import 'package:main/presentation/views/component/mobile/about_mobile_section.dart';
 import 'package:main/presentation/views/component/mobile/home_mobile_section.dart';
+import 'package:main/presentation/views/component/mobile/project_mobile_section.dart';
 import 'package:main/presentation/views/component/web/about_section.dart';
 import 'package:main/presentation/views/component/web/home_section.dart';
 import 'package:main/presentation/views/component/web/journey_section.dart';
@@ -11,6 +13,7 @@ import 'package:main/presentation/views/component/web/project_section.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../controllers/main_controller.dart';
+import 'component/mobile/journey_mobile_section.dart';
 
 class MainView extends GetView<MainController> {
   MainView({Key? key}) : super(key: key);
@@ -92,6 +95,11 @@ class MainMobile extends StatelessWidget {
       HomeMobileSection(
         controller: controller,
       ),
+      AboutMobileSection(),
+      ProjectMobileSection(
+        controller: controller,
+      ),
+      JourneyMobileSection(),
     ];
 
     return Stack(

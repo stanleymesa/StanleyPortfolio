@@ -76,6 +76,7 @@ class ProjectSection extends StatelessWidget {
             mainAxisSpacing: 24,
             crossAxisSpacing: 24,
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
             ),

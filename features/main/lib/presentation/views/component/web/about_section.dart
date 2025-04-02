@@ -7,28 +7,19 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width,
-      height: MediaQuery.sizeOf(context).height,
-      child: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-              color: Get.theme.colorScheme.background,
-              padding: EdgeInsets.only(top: 72),
-              child: AboutServiceSection(),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Get.theme.colorScheme.primary,
-              child: AboutMeSection(),
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        Container(
+          color: Get.theme.colorScheme.background,
+          padding: EdgeInsets.only(top: 72, bottom: 48),
+          child: AboutServiceSection(),
+        ),
+        Container(
+          color: Get.theme.colorScheme.primary,
+          padding: EdgeInsets.only(top: 32, bottom: 0),
+          child: AboutMeSection(),
+        ),
+      ],
     );
   }
 }
@@ -147,8 +138,8 @@ class AboutMeSection extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width * 0.325,
-                  height: MediaQuery.sizeOf(context).height * 0.325,
+                  width: MediaQuery.sizeOf(context).width * 0.25,
+                  height: MediaQuery.sizeOf(context).width * 0.25,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Get.theme.colorScheme.tertiaryContainer,

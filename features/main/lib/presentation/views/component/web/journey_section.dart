@@ -71,26 +71,6 @@ class JourneySection extends StatelessWidget {
               ],
             ),
           ),
-          // RichText(
-          //   text: TextSpan(
-          //     text: 'Professional',
-          //     style: Get.textTheme.bodyLarge?.copyWith(
-          //       color: Get.theme.colorScheme.tertiary,
-          //       fontSize: 36,
-          //       fontStyle: FontStyle.italic,
-          //     ),
-          //     children: [
-          //       TextSpan(
-          //         text: ' Journey',
-          //         style: Get.textTheme.labelLarge?.copyWith(
-          //           color: Get.theme.colorScheme.onBackground,
-          //           fontSize: 36,
-          //           fontStyle: FontStyle.normal,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
           /** Journey */
           SizedBox(
             height: 32,
@@ -450,7 +430,7 @@ class JourneyWorkSection extends StatelessWidget {
                 Text(
                   'Visi Prima Nusantara • Full-Time',
                   style: Get.textTheme.bodyMedium?.copyWith(
-                    color: Get.theme.colorScheme.secondary,
+                    color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
                 SizedBox(
@@ -495,7 +475,7 @@ class JourneyWorkSection extends StatelessWidget {
                 Text(
                   'Citiasia Inc • Internship',
                   style: Get.textTheme.bodyMedium?.copyWith(
-                    color: Get.theme.colorScheme.secondary,
+                    color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
                 SizedBox(
@@ -540,7 +520,7 @@ class JourneyWorkSection extends StatelessWidget {
                 Text(
                   'Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka',
                   style: Get.textTheme.bodyMedium?.copyWith(
-                    color: Get.theme.colorScheme.secondary,
+                    color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
                 SizedBox(

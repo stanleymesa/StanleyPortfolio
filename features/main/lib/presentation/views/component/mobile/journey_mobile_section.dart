@@ -2,21 +2,16 @@ import 'package:core/ui/component/default_border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class JourneySection extends StatelessWidget {
-  const JourneySection({super.key});
+class JourneyMobileSection extends StatelessWidget {
+  const JourneyMobileSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.sizeOf(context).width * 0.1,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 144,
-          ),
           /** Journey Title */
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -33,9 +28,8 @@ class JourneySection extends StatelessWidget {
               ),
               Text(
                 'Education & Work',
-                style: Get.textTheme.bodyLarge?.copyWith(
+                style: Get.textTheme.bodyMedium?.copyWith(
                   color: Get.theme.colorScheme.onBackground,
-                  fontSize: 18,
                 ),
               ),
             ],
@@ -48,7 +42,7 @@ class JourneySection extends StatelessWidget {
               text: 'My',
               style: Get.textTheme.labelLarge?.copyWith(
                 color: Get.theme.colorScheme.onBackground,
-                fontSize: 36,
+                fontSize: 24,
                 fontStyle: FontStyle.normal,
               ),
               children: [
@@ -56,7 +50,7 @@ class JourneySection extends StatelessWidget {
                   text: ' Academic and Professional',
                   style: Get.textTheme.bodyLarge?.copyWith(
                     color: Get.theme.colorScheme.tertiary,
-                    fontSize: 36,
+                    fontSize: 24,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
@@ -64,67 +58,35 @@ class JourneySection extends StatelessWidget {
                   text: ' Journey',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 36,
+                    fontSize: 24,
                     fontStyle: FontStyle.normal,
                   ),
                 ),
               ],
             ),
           ),
-          // RichText(
-          //   text: TextSpan(
-          //     text: 'Professional',
-          //     style: Get.textTheme.bodyLarge?.copyWith(
-          //       color: Get.theme.colorScheme.tertiary,
-          //       fontSize: 36,
-          //       fontStyle: FontStyle.italic,
-          //     ),
-          //     children: [
-          //       TextSpan(
-          //         text: ' Journey',
-          //         style: Get.textTheme.labelLarge?.copyWith(
-          //           color: Get.theme.colorScheme.onBackground,
-          //           fontSize: 36,
-          //           fontStyle: FontStyle.normal,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
           /** Journey */
           SizedBox(
             height: 32,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Column(
             children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      child: JourneyEducationSection(),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      child: JourneyLicenseSection(),
-                    ),
-                  ],
-                ),
+              Container(
+                width: MediaQuery.sizeOf(context).width,
+                child: JourneyEducationMobileSection(),
               ),
               SizedBox(
-                width: 24,
+                height: 16,
               ),
-              Expanded(
-                child: JourneyWorkSection(),
-              )
+              Container(
+                width: MediaQuery.sizeOf(context).width,
+                child: JourneyLicenseMobileSection(),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              JourneyWorkMobileSection()
             ],
-          ),
-          SizedBox(
-            height: 120,
           ),
         ],
       ),
@@ -132,8 +94,8 @@ class JourneySection extends StatelessWidget {
   }
 }
 
-class JourneyEducationSection extends StatelessWidget {
-  const JourneyEducationSection({super.key});
+class JourneyEducationMobileSection extends StatelessWidget {
+  const JourneyEducationMobileSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -146,32 +108,35 @@ class JourneyEducationSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
+                radius: 16,
                 backgroundColor: Get.theme.colorScheme.primary,
                 child: Icon(
                   Icons.school_outlined,
                   color: Get.theme.colorScheme.onPrimary,
+                  size: 20,
                 ),
               ),
               SizedBox(
                 width: 16,
               ),
-              Text(
-                'Education',
-                style: Get.textTheme.labelLarge?.copyWith(
-                  color: Get.theme.colorScheme.primary,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  'Education',
+                  style: Get.textTheme.labelLarge?.copyWith(
+                    color: Get.theme.colorScheme.primary,
+                  ),
                 ),
               ),
             ],
           ),
           SizedBox(
-            height: 16,
+            height: 12,
           ),
           Divider(
             color: Get.theme.colorScheme.onSecondaryContainer.withOpacity(0.2),
           ),
           SizedBox(
-            height: 16,
+            height: 12,
           ),
           Container(
             decoration: BoxDecoration(
@@ -191,7 +156,6 @@ class JourneyEducationSection extends StatelessWidget {
                   'Dian Nuswantoro University',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -199,7 +163,7 @@ class JourneyEducationSection extends StatelessWidget {
                 ),
                 Text(
                   'Bachelor of Computer Science',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -208,7 +172,7 @@ class JourneyEducationSection extends StatelessWidget {
                 ),
                 Text(
                   '2019-2023',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -217,7 +181,7 @@ class JourneyEducationSection extends StatelessWidget {
                 ),
                 Text(
                   'GPA 3.95',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
@@ -230,8 +194,8 @@ class JourneyEducationSection extends StatelessWidget {
   }
 }
 
-class JourneyLicenseSection extends StatelessWidget {
-  const JourneyLicenseSection({super.key});
+class JourneyLicenseMobileSection extends StatelessWidget {
+  const JourneyLicenseMobileSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -244,20 +208,23 @@ class JourneyLicenseSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
+                radius: 16,
                 backgroundColor: Get.theme.colorScheme.primary,
                 child: Icon(
                   Icons.workspace_premium_outlined,
                   color: Get.theme.colorScheme.onPrimary,
+                  size: 20,
                 ),
               ),
               SizedBox(
                 width: 16,
               ),
-              Text(
-                'Licenses & Certifications',
-                style: Get.textTheme.labelLarge?.copyWith(
-                  color: Get.theme.colorScheme.primary,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  'Licenses & Certifications',
+                  style: Get.textTheme.labelLarge?.copyWith(
+                    color: Get.theme.colorScheme.primary,
+                  ),
                 ),
               ),
             ],
@@ -289,7 +256,6 @@ class JourneyLicenseSection extends StatelessWidget {
                   'Associate Android Developer',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -297,7 +263,7 @@ class JourneyLicenseSection extends StatelessWidget {
                 ),
                 Text(
                   'Google',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -325,7 +291,6 @@ class JourneyLicenseSection extends StatelessWidget {
                   'Android Developer Expert',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -333,7 +298,7 @@ class JourneyLicenseSection extends StatelessWidget {
                 ),
                 Text(
                   'Dicoding Indonesia',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -361,7 +326,6 @@ class JourneyLicenseSection extends StatelessWidget {
                   'Flutter Intermediate',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -369,7 +333,7 @@ class JourneyLicenseSection extends StatelessWidget {
                 ),
                 Text(
                   'ITBOX',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -382,8 +346,8 @@ class JourneyLicenseSection extends StatelessWidget {
   }
 }
 
-class JourneyWorkSection extends StatelessWidget {
-  const JourneyWorkSection({super.key});
+class JourneyWorkMobileSection extends StatelessWidget {
+  const JourneyWorkMobileSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -396,32 +360,35 @@ class JourneyWorkSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
+                radius: 16,
                 backgroundColor: Get.theme.colorScheme.primary,
                 child: Icon(
                   Icons.work_outline_outlined,
                   color: Get.theme.colorScheme.onPrimary,
+                  size: 20,
                 ),
               ),
               SizedBox(
                 width: 16,
               ),
-              Text(
-                'Work Experience',
-                style: Get.textTheme.labelLarge?.copyWith(
-                  color: Get.theme.colorScheme.primary,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  'Work Experience',
+                  style: Get.textTheme.labelLarge?.copyWith(
+                    color: Get.theme.colorScheme.primary,
+                  ),
                 ),
               ),
             ],
           ),
           SizedBox(
-            height: 16,
+            height: 12,
           ),
           Divider(
             color: Get.theme.colorScheme.onSecondaryContainer.withOpacity(0.2),
           ),
           SizedBox(
-            height: 16,
+            height: 12,
           ),
           Container(
             decoration: BoxDecoration(
@@ -441,7 +408,6 @@ class JourneyWorkSection extends StatelessWidget {
                   'Android Developer',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -449,8 +415,8 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Visi Prima Nusantara • Full-Time',
-                  style: Get.textTheme.bodyMedium?.copyWith(
-                    color: Get.theme.colorScheme.secondary,
+                  style: Get.textTheme.bodySmall?.copyWith(
+                    color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
                 SizedBox(
@@ -458,7 +424,7 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Apr 2023 - Present',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -486,7 +452,6 @@ class JourneyWorkSection extends StatelessWidget {
                   'Flutter Developer',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -494,8 +459,8 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Citiasia Inc • Internship',
-                  style: Get.textTheme.bodyMedium?.copyWith(
-                    color: Get.theme.colorScheme.secondary,
+                  style: Get.textTheme.bodySmall?.copyWith(
+                    color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
                 SizedBox(
@@ -503,7 +468,7 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Aug 2022 - Dec 2022',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
@@ -531,7 +496,6 @@ class JourneyWorkSection extends StatelessWidget {
                   'Android Development Cohort',
                   style: Get.textTheme.labelLarge?.copyWith(
                     color: Get.theme.colorScheme.onBackground,
-                    fontSize: 18,
                   ),
                 ),
                 SizedBox(
@@ -539,8 +503,8 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka',
-                  style: Get.textTheme.bodyMedium?.copyWith(
-                    color: Get.theme.colorScheme.secondary,
+                  style: Get.textTheme.bodySmall?.copyWith(
+                    color: Get.theme.colorScheme.onBackground,
                   ),
                 ),
                 SizedBox(
@@ -548,7 +512,7 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Feb 2022 - Aug 2022',
-                  style: Get.textTheme.bodyMedium?.copyWith(
+                  style: Get.textTheme.bodySmall?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),
                 ),
