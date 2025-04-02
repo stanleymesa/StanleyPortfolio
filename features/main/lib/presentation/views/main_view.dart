@@ -1,12 +1,13 @@
-import 'package:core/ui/component/default_button_custom.dart';
 import 'package:core/utils/ext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main/presentation/views/component/about_section.dart';
-import 'package:main/presentation/views/component/home_section.dart';
-import 'package:main/presentation/views/component/journey_section.dart';
 import 'package:main/presentation/views/component/main_header.dart';
-import 'package:main/presentation/views/component/project_section.dart';
+import 'package:main/presentation/views/component/main_mobile_header.dart';
+import 'package:main/presentation/views/component/mobile/home_mobile_section.dart';
+import 'package:main/presentation/views/component/web/about_section.dart';
+import 'package:main/presentation/views/component/web/home_section.dart';
+import 'package:main/presentation/views/component/web/journey_section.dart';
+import 'package:main/presentation/views/component/web/project_section.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../controllers/main_controller.dart';
@@ -20,6 +21,25 @@ class MainView extends GetView<MainController> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
+      floatingActionButton: isMobile
+          ? Padding(
+              padding: EdgeInsets.only(right: 6),
+              child: Obx(
+                () => AnimatedRotation(
+                  turns: controller.isShowMobileHeader.value ? 0.5 : 0,
+                  duration: Duration(milliseconds: 250),
+                  child: FloatingActionButton(
+                    onPressed: () => controller.toggleShowMobileHeader(),
+                    backgroundColor: Get.theme.colorScheme.tertiary,
+                    child: Icon(
+                      Icons.menu_open_rounded,
+                      color: Get.theme.colorScheme.onTertiary,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          : null,
       body: isMobile
           ? MainMobile(controller: controller)
           : MainWeb(controller: controller),
@@ -68,8 +88,28 @@ class MainMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [Text('Mobile')],
+    final sections = [
+      HomeMobileSection(
+        controller: controller,
+      ),
+    ];
+
+    return Stack(
+      children: [
+        /** Sections */
+        ScrollablePositionedList.builder(
+          itemCount: sections.length,
+          itemScrollController: controller.scrollController,
+          itemPositionsListener: controller.itemPositionsListener,
+          itemBuilder: (context, index) => sections[index],
+        ),
+        /** Side Header */
+        Positioned(
+          bottom: 64,
+          right: 0,
+          child: MainMobileHeader(controller: controller),
+        ),
+      ],
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:core/database/app_persistence.dart';
 import 'package:core/di/locator.dart';
 import 'package:core/utils/ext.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/model/nav_item.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -15,10 +16,34 @@ class MainController extends GetxController {
   Timer? timer;
 
   final navItems = [
-    NavItem(navType: NavType.HOME, title: 'Home', isSelected: true),
-    NavItem(navType: NavType.ABOUT, title: 'About', isSelected: false),
-    NavItem(navType: NavType.PROJECTS, title: 'Projects', isSelected: false),
-    NavItem(navType: NavType.JOURNEY, title: 'Journey', isSelected: false),
+    NavItem(
+      navType: NavType.HOME,
+      title: 'Home',
+      icon: Icons.home_outlined,
+      selectedIcon: Icons.home_rounded,
+      isSelected: true,
+    ),
+    NavItem(
+      navType: NavType.ABOUT,
+      title: 'About',
+      icon: Icons.person_outline_rounded,
+      selectedIcon: Icons.person_rounded,
+      isSelected: false,
+    ),
+    NavItem(
+      navType: NavType.PROJECTS,
+      title: 'Projects',
+      icon: Icons.code_rounded,
+      selectedIcon: Icons.developer_mode_rounded,
+      isSelected: false,
+    ),
+    NavItem(
+      navType: NavType.JOURNEY,
+      title: 'Journey',
+      icon: Icons.school_outlined,
+      selectedIcon: Icons.school_rounded,
+      isSelected: false,
+    ),
   ].obs;
 
   final _previousScrollOffset = 0.0.obs;
@@ -26,6 +51,7 @@ class MainController extends GetxController {
   final _isScrolling = false.obs;
   final _scrollDirection = ScrollDirection.IDLE.obs;
   final isShowHeader = true.obs;
+  final isShowMobileHeader = false.obs;
 
   void debounceDelay(Function() action, {int delay = 100}) {
     timer?.cancel();
@@ -42,6 +68,8 @@ class MainController extends GetxController {
         navItems.map((e) => e.copy(isSelected: e.navType == navType)).toList();
     debounceDelay(() => _isScrolling.value = false, delay: 1000);
   }
+
+  void toggleShowMobileHeader() => isShowMobileHeader.toggle();
 
   @override
   void onInit() {

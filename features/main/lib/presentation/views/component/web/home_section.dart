@@ -228,8 +228,8 @@ class HomeProfileSection extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              width: MediaQuery.sizeOf(context).width * 0.6,
-              height: MediaQuery.sizeOf(context).height * 0.6,
+              width: MediaQuery.sizeOf(context).width * 0.35,
+              height: MediaQuery.sizeOf(context).width * 0.35,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Get.theme.colorScheme.tertiary,

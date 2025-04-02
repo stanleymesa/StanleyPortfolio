@@ -12,14 +12,14 @@ class JourneySection extends StatelessWidget {
         horizontal: MediaQuery.sizeOf(context).width * 0.1,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 144,
           ),
           /** Journey Title */
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: 12,
@@ -53,25 +53,13 @@ class JourneySection extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: ' Academic and',
+                  text: ' Academic and Professional',
                   style: Get.textTheme.bodyLarge?.copyWith(
                     color: Get.theme.colorScheme.tertiary,
                     fontSize: 36,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
-              ],
-            ),
-          ),
-          RichText(
-            text: TextSpan(
-              text: 'Professional',
-              style: Get.textTheme.bodyLarge?.copyWith(
-                color: Get.theme.colorScheme.tertiary,
-                fontSize: 36,
-                fontStyle: FontStyle.italic,
-              ),
-              children: [
                 TextSpan(
                   text: ' Journey',
                   style: Get.textTheme.labelLarge?.copyWith(
@@ -83,6 +71,26 @@ class JourneySection extends StatelessWidget {
               ],
             ),
           ),
+          // RichText(
+          //   text: TextSpan(
+          //     text: 'Professional',
+          //     style: Get.textTheme.bodyLarge?.copyWith(
+          //       color: Get.theme.colorScheme.tertiary,
+          //       fontSize: 36,
+          //       fontStyle: FontStyle.italic,
+          //     ),
+          //     children: [
+          //       TextSpan(
+          //         text: ' Journey',
+          //         style: Get.textTheme.labelLarge?.copyWith(
+          //           color: Get.theme.colorScheme.onBackground,
+          //           fontSize: 36,
+          //           fontStyle: FontStyle.normal,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           /** Journey */
           SizedBox(
             height: 32,
