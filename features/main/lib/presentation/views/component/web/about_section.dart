@@ -1,5 +1,7 @@
 import 'package:core/ui/component/default_border_card.dart';
+import 'package:core/utils/ext.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class AboutSection extends StatelessWidget {
@@ -7,19 +9,29 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          color: Get.theme.colorScheme.background,
-          padding: EdgeInsets.only(top: 72, bottom: 48),
-          child: AboutServiceSection(),
-        ),
-        Container(
-          color: Get.theme.colorScheme.primary,
-          padding: EdgeInsets.only(top: 32, bottom: 0),
-          child: AboutMeSection(),
-        ),
-      ],
+    return Container(
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Container(
+              color: Get.theme.colorScheme.background,
+              // padding: EdgeInsets.only(top: 144, bottom: 48),
+              child: AboutServiceSection(),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              color: Get.theme.colorScheme.primary,
+              // padding: EdgeInsets.only(top: 32, bottom: 0),
+              child: AboutMeSection(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -92,7 +104,7 @@ class AboutServiceSection extends StatelessWidget {
                 icon: Icons.android_rounded,
                 title: 'Android Native',
                 text:
-                    'Developing Android Apps with Jetpack Compose and Clean Architecture',
+                    'We build Android apps with Jetpack Compose to makes beautiful and smooth design, clean Architecture keeps the code organized, and Android Native tools for best performance.',
               ),
               SizedBox(
                 width: 24,
@@ -101,7 +113,7 @@ class AboutServiceSection extends StatelessWidget {
                 icon: Icons.phone_android_rounded,
                 title: 'Flutter Mobile',
                 text:
-                    'Developing Android Apps with Jetpack Compose and Clean Architecture',
+                    'We create mobile apps with Flutter. GetX manages app data and navigation. Clean Architecture keeps the code organized. One code works on both Android and iOS.',
               ),
               SizedBox(
                 width: 24,
@@ -110,7 +122,7 @@ class AboutServiceSection extends StatelessWidget {
                 icon: Icons.computer_rounded,
                 title: 'Flutter Web',
                 text:
-                    'Developing Android Apps with Jetpack Compose and Clean Architecture',
+                    'We use Flutter Web to make websites. GetX handles app data and pages. Clean Architecture keeps the code clean. One code works on all web browsers.',
               ),
             ],
           ),
@@ -138,17 +150,20 @@ class AboutMeSection extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width * 0.25,
-                  height: MediaQuery.sizeOf(context).width * 0.25,
+                  width: MediaQuery.sizeOf(context).width * 0.2,
+                  height: MediaQuery.sizeOf(context).width * 0.2,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Get.theme.colorScheme.tertiaryContainer,
                   ),
-                  transform: Matrix4.translationValues(16, 0, 0),
+                  transform: Matrix4.translationValues(0, 0, 0),
                 ),
-                Image.asset(
-                  '../../assets/images/img_stanley.webp',
-                  width: MediaQuery.sizeOf(context).width * 0.3,
+                Transform.flip(
+                  flipX: true,
+                  child: Image.asset(
+                    '../../assets/images/img_stanley.webp',
+                    width: MediaQuery.sizeOf(context).width * 0.3,
+                  ),
                 ),
               ],
             ),
@@ -207,7 +222,7 @@ class AboutMeSection extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  'Stanley Mesa is a human who loves mobile development especially Android. But i also love flutter mobile and web development',
+                  "Hi there! I love building apps and websites! I've spent time working on Android apps, and I'm also really into Flutter, which lets me make cool mobile apps and even websites. It's been a fun journey learning how to create things that people enjoy using.",
                   style: Get.textTheme.bodyMedium?.copyWith(
                     color: Get.theme.colorScheme.onSecondary,
                   ),
@@ -215,47 +230,96 @@ class AboutMeSection extends StatelessWidget {
                 SizedBox(
                   height: 24,
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Get.theme.colorScheme.tertiaryContainer,
-                      foregroundColor:
-                          Get.theme.colorScheme.onTertiaryContainer,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 3, vertical: 11)),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 12,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Clipboard.setData(
+                          ClipboardData(text: 'stanleymesa2001@gmail.com'),
+                        );
+                        showSnackbar('Email copied');
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.email_outlined,
+                              color: Get.theme.colorScheme.onTertiaryContainer,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              'Email',
+                              style: Get.textTheme.labelSmall?.copyWith(
+                                color:
+                                    Get.theme.colorScheme.onTertiaryContainer,
+                              ),
+                            ),
+                          ],
                         ),
-                        decoration: BoxDecoration(
-                          color: Get.theme.colorScheme.primary,
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
-                        ),
-                        child: Text(
-                          'Download CV',
-                          style: Get.textTheme.labelSmall?.copyWith(
-                            color: Get.theme.colorScheme.background,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Get.theme.colorScheme.tertiaryContainer,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        showSnackbar('My CV is still on progress..');
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Get.theme.colorScheme.tertiaryContainer,
+                          foregroundColor:
+                              Get.theme.colorScheme.onTertiaryContainer,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 3, vertical: 11)),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Get.theme.colorScheme.primary,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: Text(
+                              'Download CV',
+                              style: Get.textTheme.labelSmall?.copyWith(
+                                color: Get.theme.colorScheme.background,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          CircleAvatar(
+                            radius: 17,
+                            backgroundColor: Get.theme.colorScheme.tertiary,
+                            child: Icon(
+                              Icons.arrow_forward_rounded,
+                              color: Get.theme.colorScheme.tertiaryContainer,
+                            ),
+                          )
+                        ],
                       ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      CircleAvatar(
-                        radius: 17,
-                        backgroundColor: Get.theme.colorScheme.tertiary,
-                        child: Icon(
-                          Icons.arrow_forward_rounded,
-                          color: Get.theme.colorScheme.tertiaryContainer,
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -281,40 +345,43 @@ class ServiceContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: DefaultBorderCard(
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundColor: Get.theme.colorScheme.background,
-              child: Icon(
-                icon,
-                size: 24,
-                color: Get.theme.colorScheme.primary,
+      child: Container(
+        height: 240,
+        child: DefaultBorderCard(
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 28,
+                backgroundColor: Get.theme.colorScheme.background,
+                child: Icon(
+                  icon,
+                  size: 24,
+                  color: Get.theme.colorScheme.primary,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              title,
-              style: Get.textTheme.labelLarge?.copyWith(
-                color: Get.theme.colorScheme.onBackground,
+              SizedBox(
+                height: 12,
               ),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              text,
-              style: Get.textTheme.bodyMedium?.copyWith(
-                color: Get.theme.colorScheme.secondary,
+              Text(
+                title,
+                style: Get.textTheme.labelLarge?.copyWith(
+                  color: Get.theme.colorScheme.onBackground,
+                ),
               ),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                text,
+                style: Get.textTheme.bodyMedium?.copyWith(
+                  color: Get.theme.colorScheme.secondary,
+                ),
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );

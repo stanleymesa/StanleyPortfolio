@@ -1,8 +1,10 @@
+import 'package:core/shared_data/enum/app_mode.dart';
 import 'package:core/ui/component/default_border_card.dart';
 import 'package:core/ui/component/default_button_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectMobileSection extends StatelessWidget {
   final MainController controller;
@@ -13,7 +15,7 @@ class ProjectMobileSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: 24,
+        horizontal: 16,
         vertical: 32,
       ),
       child: Column(
@@ -70,88 +72,118 @@ class ProjectMobileSection extends StatelessWidget {
           ListView.separated(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 5,
+            itemCount: controller.projects.length,
             separatorBuilder: (context, index) => SizedBox(
               height: 16,
             ),
-            itemBuilder: (context, index) => DefaultButtonCustom(
-              appMode: controller.appPersistence.getAppMode(),
-              radiusSplash: 8,
-              onClick: () {},
-              content: DefaultBorderCard(
-                content: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Image.asset(
-                    //   '../../assets/images/img_stanley.webp',
-                    //   height: 120,
-                    // ),
-                    ClipRRect(
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(8)),
-                      child: Container(
-                        height: 360,
-                        color: Get.theme.colorScheme.tertiary,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Wrap(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.start,
-                      spacing: 12,
-                      runSpacing: 12,
-                      children: List.generate(
-                        5,
-                        (index) => Container(
-                          decoration: BoxDecoration(
-                            color: Get.theme.colorScheme.tertiary,
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
+            itemBuilder: (context, index) {
+              final project = controller.projects[index];
+              return DefaultButtonCustom(
+                appMode: controller.appPersistence.getAppMode(),
+                radiusSplash: 8,
+                onClick: () async {
+                  if (project.url.isNotEmpty) {
+                    try {
+                      final Uri url = Uri.parse(project.url);
+                      await launchUrl(url);
+                    } catch (_) {}
+                  }
+                },
+                content: DefaultBorderCard(
+                  content: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(8)),
+                        child: Container(
+                          color: controller.appPersistence.getAppMode() ==
+                                  AppMode.LIGHT
+                              ? Colors.white
+                              : Get.theme.colorScheme.secondary,
+                          child: Image.asset(
+                            project.image,
+                            width: MediaQuery.sizeOf(context).width,
+                            height: 520,
+                            fit: BoxFit.cover,
                           ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            child: Text(
-                              'Android Native',
-                              style: Get.textTheme.labelSmall?.copyWith(
-                                color: Get.theme.colorScheme.onTertiary,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Wrap(
+                        direction: Axis.horizontal,
+                        alignment: WrapAlignment.start,
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: List.generate(
+                          project.types.length,
+                          (index) => Container(
+                            decoration: BoxDecoration(
+                              color: Get.theme.colorScheme.tertiary,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 8),
+                              child: Text(
+                                project.types[index],
+                                style: Get.textTheme.labelSmall?.copyWith(
+                                  color: Get.theme.colorScheme.onTertiary,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Cinebox - Personal Movies App',
-                            style: Get.textTheme.labelLarge?.copyWith(
-                              color: Get.theme.colorScheme.onBackground,
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  project.name,
+                                  style: Get.textTheme.labelLarge?.copyWith(
+                                    color: Get.theme.colorScheme.onBackground,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  project.text,
+                                  style: Get.textTheme.bodySmall?.copyWith(
+                                    color: Get.theme.colorScheme.secondary,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        CircleAvatar(
-                          backgroundColor: Get.theme.colorScheme.primary,
-                          child: Icon(
-                            Icons.arrow_forward_rounded,
-                            color: Get.theme.colorScheme.secondaryContainer,
+                          SizedBox(
+                            width: 12,
                           ),
-                        )
-                      ],
-                    ),
-                  ],
+                          CircleAvatar(
+                            backgroundColor: Get.theme.colorScheme.primary,
+                            child: Icon(
+                              Icons.arrow_forward_rounded,
+                              color: Get.theme.colorScheme.secondaryContainer,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ],
       ),

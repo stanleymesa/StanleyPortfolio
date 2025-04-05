@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeMobileSection extends StatelessWidget {
   final MainController controller;
@@ -18,8 +19,8 @@ class HomeMobileSection extends StatelessWidget {
           Positioned(
             top: 0,
             bottom: MediaQuery.sizeOf(context).height * 0.4,
-            left: 24,
-            right: 24,
+            left: 16,
+            right: 16,
             child: HomeNameMobileSection(),
           ),
           /** Photo */
@@ -103,7 +104,13 @@ class HomeNameMobileSection extends StatelessWidget {
           height: 32,
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () async {
+            try {
+              final Uri url =
+              Uri.parse('https://github.com/stanleymesa');
+              await launchUrl(url);
+            } catch (_) {}
+          },
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Row(
@@ -135,7 +142,13 @@ class HomeNameMobileSection extends StatelessWidget {
           height: 12,
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () async {
+            try {
+              final Uri url = Uri.parse(
+                  'https://www.linkedin.com/in/stanleymesaariel/');
+              await launchUrl(url);
+            } catch (_) {}
+          },
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Row(

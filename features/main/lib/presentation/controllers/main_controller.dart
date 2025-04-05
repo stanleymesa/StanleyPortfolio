@@ -4,6 +4,7 @@ import 'package:core/database/app_persistence.dart';
 import 'package:core/di/locator.dart';
 import 'package:core/utils/ext.dart';
 import 'package:get/get.dart';
+import 'package:main/domain/project.dart';
 import 'package:main/presentation/model/nav_item.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -23,6 +24,8 @@ class MainController extends GetxController {
   final _scrollDirection = ScrollDirection.IDLE.obs;
   final isShowHeader = true.obs;
   final isShowMobileHeader = false.obs;
+
+  final projects = defaultProjects;
 
   void debounceDelay(Function() action, {int delay = 100}) {
     timer?.cancel();

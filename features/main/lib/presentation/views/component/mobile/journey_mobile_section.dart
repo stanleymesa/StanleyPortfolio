@@ -8,7 +8,7 @@ class JourneyMobileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,7 +47,7 @@ class JourneyMobileSection extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: ' Academic and Professional',
+                  text: ' Academic and\nProfessional',
                   style: Get.textTheme.bodyLarge?.copyWith(
                     color: Get.theme.colorScheme.tertiary,
                     fontSize: 24,

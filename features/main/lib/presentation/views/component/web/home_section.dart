@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeSection extends StatelessWidget {
   final MainController controller;
@@ -137,7 +138,13 @@ class HomeNameSection extends StatelessWidget {
             children: [
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    try {
+                      final Uri url =
+                          Uri.parse('https://github.com/stanleymesa');
+                      await launchUrl(url);
+                    } catch (_) {}
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Row(
@@ -171,7 +178,13 @@ class HomeNameSection extends StatelessWidget {
               ),
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    try {
+                      final Uri url = Uri.parse(
+                          'https://www.linkedin.com/in/stanleymesaariel/');
+                      await launchUrl(url);
+                    } catch (_) {}
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Row(
