@@ -73,10 +73,10 @@ class MainController extends GetxController {
 
         if (currentOffset > _previousScrollOffset.value) {
           _isHeaderInit.value = true;
-          _scrollDirection.value = firstVisibleIndex < 3 || lastVisibleIndex < 3
+          _scrollDirection.value = firstVisibleIndex < 4 || lastVisibleIndex < 4
               ? ScrollDirection.DOWN
               : ScrollDirection.IDLE;
-          isShowHeader.value = firstVisibleIndex < 3 || lastVisibleIndex < 3;
+          isShowHeader.value = firstVisibleIndex < 4 || lastVisibleIndex < 4;
         } else if (currentOffset < _previousScrollOffset.value) {
           _isHeaderInit.value = true;
           _scrollDirection.value = ScrollDirection.UP;

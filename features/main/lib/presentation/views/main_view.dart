@@ -66,6 +66,9 @@ class MainWeb extends StatelessWidget {
       ProjectSection(
         controller: controller,
       ),
+      SizedBox(
+        height: 64,
+      )
     ];
 
     return Stack(

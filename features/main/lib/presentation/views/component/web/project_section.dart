@@ -192,9 +192,6 @@ class ProjectSection extends StatelessWidget {
               );
             },
           ),
-          SizedBox(
-            height: 64,
-          ),
         ],
       ),
     );
