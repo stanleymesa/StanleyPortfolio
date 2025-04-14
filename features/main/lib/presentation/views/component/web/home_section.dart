@@ -1,3 +1,4 @@
+import 'package:core/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
@@ -70,6 +71,16 @@ class HomeSection extends StatelessWidget {
                         color: Get.theme.colorScheme.onPrimaryContainer),
                   ),
                 ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 92,
+            right: 16,
+            child: Text(
+              'Version: ${AppConstants.APP_VERSION}',
+              style: Get.textTheme.labelSmall?.copyWith(
+                color: Get.theme.colorScheme.primary,
               ),
             ),
           ),
