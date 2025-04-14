@@ -56,18 +56,18 @@ final defaultNavItems = [
   ),
   NavItem(
     index: 2,
-    navType: NavType.PROJECTS,
-    title: 'Projects',
-    icon: Icons.code_rounded,
-    selectedIcon: Icons.developer_mode_rounded,
-    isSelected: false,
-  ),
-  NavItem(
-    index: 3,
     navType: NavType.JOURNEY,
     title: 'Journey',
     icon: Icons.school_outlined,
     selectedIcon: Icons.school_rounded,
+    isSelected: false,
+  ),
+  NavItem(
+    index: 3,
+    navType: NavType.PROJECTS,
+    title: 'Projects',
+    icon: Icons.code_rounded,
+    selectedIcon: Icons.developer_mode_rounded,
     isSelected: false,
   ),
 ];

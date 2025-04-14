@@ -3,6 +3,7 @@ import 'package:core/utils/ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -242,8 +243,7 @@ class AboutMeSection extends StatelessWidget {
                         showSnackbar('Email copied');
                       },
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        padding: EdgeInsets.symmetric(vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -274,8 +274,12 @@ class AboutMeSection extends StatelessWidget {
                       width: 16,
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        showSnackbar('My CV is still on progress..');
+                      onPressed: () async {
+                        try {
+                          final Uri url = Uri.parse(
+                              'https://stanley.soapmate.id/assets/files/stanley_resume.pdf');
+                          await launchUrl(url);
+                        } catch (_) {}
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
@@ -299,7 +303,7 @@ class AboutMeSection extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(16)),
                             ),
                             child: Text(
-                              'Download CV',
+                              'See Resume',
                               style: Get.textTheme.labelSmall?.copyWith(
                                 color: Get.theme.colorScheme.background,
                               ),
