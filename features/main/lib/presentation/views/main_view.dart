@@ -62,10 +62,10 @@ class MainWeb extends StatelessWidget {
         controller: controller,
       ),
       AboutSection(),
+      JourneySection(),
       ProjectSection(
         controller: controller,
       ),
-      JourneySection(),
     ];
 
     return Stack(
@@ -96,10 +96,10 @@ class MainMobile extends StatelessWidget {
         controller: controller,
       ),
       AboutMobileSection(),
+      JourneyMobileSection(),
       ProjectMobileSection(
         controller: controller,
       ),
-      JourneyMobileSection(),
     ];
 
     return Stack(

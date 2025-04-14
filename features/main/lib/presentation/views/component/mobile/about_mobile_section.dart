@@ -3,6 +3,7 @@ import 'package:core/utils/ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutMobileSection extends StatelessWidget {
   const AboutMobileSection({super.key});
@@ -92,7 +93,7 @@ class AboutServiceMobileSection extends StatelessWidget {
                 icon: Icons.android_rounded,
                 title: 'Android Native',
                 text:
-                'We build Android apps with Jetpack Compose to makes beautiful and smooth design, clean Architecture keeps the code organized, and Android Native tools for best performance.',
+                    'We build Android apps with Jetpack Compose to makes beautiful and smooth design, clean Architecture keeps the code organized, and Android Native tools for best performance.',
               ),
               SizedBox(
                 height: 16,
@@ -101,7 +102,7 @@ class AboutServiceMobileSection extends StatelessWidget {
                 icon: Icons.phone_android_rounded,
                 title: 'Flutter Mobile',
                 text:
-                'We create mobile apps with Flutter. GetX manages app data and navigation. Clean Architecture keeps the code organized. One code works on both Android and iOS.',
+                    'We create mobile apps with Flutter. GetX manages app data and navigation. Clean Architecture keeps the code organized. One code works on both Android and iOS.',
               ),
               SizedBox(
                 height: 16,
@@ -110,7 +111,7 @@ class AboutServiceMobileSection extends StatelessWidget {
                 icon: Icons.computer_rounded,
                 title: 'Flutter Web',
                 text:
-                'We use Flutter Web to make websites. GetX handles app data and pages. Clean Architecture keeps the code clean. One code works on all web browsers.',
+                    'We use Flutter Web to make websites. GetX handles app data and pages. Clean Architecture keeps the code clean. One code works on all web browsers.',
               ),
             ],
           ),
@@ -198,14 +199,12 @@ class AboutMeMobileSection extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Clipboard.setData(
-                    ClipboardData(
-                        text: 'stanleymesa2001@gmail.com'),
+                    ClipboardData(text: 'stanleymesa2001@gmail.com'),
                   );
                   showSnackbar('Email copied');
                 },
                 child: Padding(
-                  padding:
-                  EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  padding: EdgeInsets.symmetric(vertical: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -220,61 +219,51 @@ class AboutMeMobileSection extends StatelessWidget {
                       Text(
                         'Email',
                         style: Get.textTheme.labelSmall?.copyWith(
-                          color:
-                          Get.theme.colorScheme.onTertiaryContainer,
+                          color: Get.theme.colorScheme.onTertiaryContainer,
                         ),
                       ),
                     ],
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                  Get.theme.colorScheme.tertiaryContainer,
+                  backgroundColor: Get.theme.colorScheme.tertiaryContainer,
                 ),
               ),
               SizedBox(
                 width: 12,
               ),
               ElevatedButton(
-                onPressed: () {
-                  showSnackbar('My CV is still on progress..');
+                onPressed: () async {
+                  try {
+                    final Uri url = Uri.parse(
+                        'https://stanley.soapmate.id/assets/files/stanley_resume.pdf');
+                    await launchUrl(url);
+                  } catch (_) {}
                 },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Get.theme.colorScheme.tertiaryContainer,
-                    foregroundColor: Get.theme.colorScheme.onTertiaryContainer,
-                    padding: EdgeInsets.symmetric(horizontal: 3, vertical: 11)),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Get.theme.colorScheme.primary,
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                      ),
-                      child: Text(
-                        'Download CV',
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'See Resume',
                         style: Get.textTheme.labelSmall?.copyWith(
-                          color: Get.theme.colorScheme.background,
+                          color: Get.theme.colorScheme.onTertiaryContainer,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    CircleAvatar(
-                      radius: 17,
-                      backgroundColor: Get.theme.colorScheme.tertiary,
-                      child: Icon(
-                        Icons.arrow_forward_rounded,
-                        color: Get.theme.colorScheme.tertiaryContainer,
+                      SizedBox(
+                        width: 8,
                       ),
-                    )
-                  ],
+                      Icon(
+                        Icons.arrow_circle_right_outlined,
+                        color: Get.theme.colorScheme.onTertiaryContainer,
+                      ),
+                    ],
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Get.theme.colorScheme.tertiaryContainer,
                 ),
               ),
             ],
@@ -300,6 +289,7 @@ class ServiceMobileContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.sizeOf(context).width,
       height: 224,
       child: DefaultBorderCard(
         content: Column(
@@ -329,9 +319,8 @@ class ServiceMobileContent extends StatelessWidget {
             Text(
               text,
               style: Get.textTheme.bodySmall?.copyWith(
-                color: Get.theme.colorScheme.secondary,
-                fontSize: context.isMobile() ? 12 : 14
-              ),
+                  color: Get.theme.colorScheme.secondary,
+                  fontSize: context.isMobile() ? 12 : 14),
               maxLines: 5,
               overflow: TextOverflow.ellipsis,
             ),

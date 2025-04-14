@@ -35,7 +35,7 @@ class HomeMobileSection extends StatelessWidget {
               width: MediaQuery.sizeOf(context).width,
               height: 36,
               color: Get.theme.colorScheme.onPrimaryContainer,
-              transform: Matrix4.rotationZ(-0.05),
+              transform: Matrix4.rotationZ(-0.03),
             ),
           ),
           Positioned(
@@ -199,6 +199,7 @@ class HomeProfileMobileSection extends StatelessWidget {
           Container(
             width: MediaQuery.sizeOf(context).width * 0.6,
             height: MediaQuery.sizeOf(context).width * 0.6,
+            constraints: BoxConstraints(maxWidth: 280, maxHeight: 280),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Get.theme.colorScheme.tertiary,
