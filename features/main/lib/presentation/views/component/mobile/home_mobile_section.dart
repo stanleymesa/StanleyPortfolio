@@ -1,3 +1,4 @@
+import 'package:core/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main/presentation/controllers/main_controller.dart';
@@ -44,6 +45,14 @@ class HomeMobileSection extends StatelessWidget {
               width: MediaQuery.sizeOf(context).width,
               height: 36,
               color: Get.theme.colorScheme.primaryContainer,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                'v${AppConstants.APP_VERSION}',
+                style: Get.textTheme.labelSmall?.copyWith(
+                  color: Get.theme.colorScheme.onPrimaryContainer,
+                ),
+              ),
             ),
           ),
         ],
@@ -106,8 +115,7 @@ class HomeNameMobileSection extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             try {
-              final Uri url =
-              Uri.parse('https://github.com/stanleymesa');
+              final Uri url = Uri.parse('https://github.com/stanleymesa');
               await launchUrl(url);
             } catch (_) {}
           },
@@ -144,8 +152,8 @@ class HomeNameMobileSection extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             try {
-              final Uri url = Uri.parse(
-                  'https://www.linkedin.com/in/stanleymesaariel/');
+              final Uri url =
+                  Uri.parse('https://www.linkedin.com/in/stanleymesaariel/');
               await launchUrl(url);
             } catch (_) {}
           },

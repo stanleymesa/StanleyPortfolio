@@ -78,7 +78,7 @@ class HomeSection extends StatelessWidget {
             bottom: 92,
             right: 16,
             child: Text(
-              'Version: ${AppConstants.APP_VERSION}',
+              'v${AppConstants.APP_VERSION}',
               style: Get.textTheme.labelSmall?.copyWith(
                 color: Get.theme.colorScheme.primary,
               ),
