@@ -15,7 +15,7 @@ class JourneySection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 144,
+            height: 128,
           ),
           /** Journey Title */
           Row(
@@ -102,9 +102,6 @@ class JourneySection extends StatelessWidget {
                 child: JourneyWorkSection(),
               )
             ],
-          ),
-          SizedBox(
-            height: 120,
           ),
         ],
       ),
@@ -438,6 +435,51 @@ class JourneyWorkSection extends StatelessWidget {
                 ),
                 Text(
                   'Apr 2023 - Present',
+                  style: Get.textTheme.bodyMedium?.copyWith(
+                    color: Get.theme.colorScheme.secondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 24,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  color: Get.theme.colorScheme.onSecondaryContainer
+                      .withOpacity(0.2),
+                  width: 4,
+                ),
+              ),
+            ),
+            padding: EdgeInsets.only(left: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Android & Flutter Developer',
+                  style: Get.textTheme.labelLarge?.copyWith(
+                    color: Get.theme.colorScheme.onBackground,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Freelance',
+                  style: Get.textTheme.bodyMedium?.copyWith(
+                    color: Get.theme.colorScheme.onBackground,
+                  ),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Nov 2023 - Present',
                   style: Get.textTheme.bodyMedium?.copyWith(
                     color: Get.theme.colorScheme.secondary,
                   ),

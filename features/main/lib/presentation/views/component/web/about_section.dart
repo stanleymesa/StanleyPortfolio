@@ -19,7 +19,7 @@ class AboutSection extends StatelessWidget {
             flex: 3,
             child: Container(
               color: Get.theme.colorScheme.background,
-              // padding: EdgeInsets.only(top: 144, bottom: 48),
+              padding: EdgeInsets.only(top: 64,),
               child: AboutServiceSection(),
             ),
           ),

@@ -191,7 +191,7 @@ class ProjectSection extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );
