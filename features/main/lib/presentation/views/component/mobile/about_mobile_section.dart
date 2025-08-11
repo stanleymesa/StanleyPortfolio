@@ -236,7 +236,7 @@ class AboutMeMobileSection extends StatelessWidget {
                 onPressed: () async {
                   try {
                     final Uri url = Uri.parse(
-                        'https://stanley.soapmate.id/assets/files/stanley_resume.pdf');
+                        'https://stanley.soapmate.id/assets/files/stanley_resume_v1.0.12.pdf');
                     await launchUrl(url);
                   } catch (_) {}
                 },
