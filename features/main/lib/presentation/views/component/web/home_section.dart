@@ -135,11 +135,45 @@ class HomeNameSection extends StatelessWidget {
           SizedBox(
             height: 24,
           ),
-          Text(
-            "Experienced Mobile Developer with 2+ years in the field, focusing on Android and Flutter Development.",
-            style: Get.textTheme.bodyMedium?.copyWith(
-              fontSize: 14,
-              color: Get.theme.colorScheme.secondary,
+          RichText(
+            text: TextSpan(
+              style: Get.textTheme.bodyMedium?.copyWith(
+                fontSize: 14,
+                color: Get.theme.colorScheme.secondary,
+              ),
+              children: [
+                TextSpan(
+                  text: "Android & Flutter Developer",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Get.theme.colorScheme.onBackground,
+                  ),
+                ),
+                TextSpan(
+                  text: " with strong experience in ",
+                ),
+                TextSpan(
+                  text: "Kotlin, Java, Jetpack Compose",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Get.theme.colorScheme.onBackground,
+                  ),
+                ),
+                TextSpan(
+                  text: ", and ",
+                ),
+                TextSpan(
+                  text: "Flutter",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Get.theme.colorScheme.onBackground,
+                  ),
+                ),
+                TextSpan(
+                  text:
+                      ". Known for successfully modernizing legacy apps, refactoring major code, and improving performance. Passionate about writing clean, reusable code and delivering impactful mobile solutions.",
+                ),
+              ],
             ),
           ),
           SizedBox(
